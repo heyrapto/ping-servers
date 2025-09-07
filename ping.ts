@@ -24,13 +24,13 @@ async function pingServers() {
           status: "DOWN",
           latency: "N/A",
           ok: false,
-          error: err.message
+          error: err instanceof Error ? err.message : String(err)
         };
       }
     })
   );
 
-  console.table(results.map(r => r.value || r.reason));
+  console.table(results.map(r => r.status === 'fulfilled' ? r.value : r.reason));
 }
 
 setInterval(pingServers, 30000);
