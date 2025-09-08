@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 
 const servers = [
-  "https://raptomx-portfolio-server.onrender.com/health",
+  "https://raptomx-portfolio-server.onrender.com/api/health",
 ];
 
 async function pingServers() {
