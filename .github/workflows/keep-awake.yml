@@ -8,12 +8,15 @@ on:
 jobs:
   ping:
     runs-on: ubuntu-latest
+    env:
+      KEEP_APP_AWAKE_URL: ${{ secrets.KEEP_APP_AWAKE_URL }}
+      KEEP_APP_AWAKE_URL_2: ${{ secrets.KEEP_APP_AWAKE_URL_2 }}
     steps:
       - name: Ping primary URL
         run: |
-          curl -sSfL "${{ secrets.KEEP_APP_AWAKE_URL }}" > /dev/null
+          curl -sSfL "$KEEP_APP_AWAKE_URL" > /dev/null
       - name: Optional secondary ping
-        if: ${{ secrets.KEEP_APP_AWAKE_URL_2 != '' }}
+        if: ${{ env.KEEP_APP_AWAKE_URL_2 != '' }}
         run: |
-          curl -sSfL "${{ secrets.KEEP_APP_AWAKE_URL_2 }}" > /dev/null
+          curl -sSfL "$KEEP_APP_AWAKE_URL_2" > /dev/null
 
