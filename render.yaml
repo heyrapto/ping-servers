@@ -1,0 +1,12 @@
+services:
+  - type: worker
+    name: ping-servers-worker
+    env: node
+    plan: starter # change to free if okay with sleep; paid plans don't auto-sleep
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+
